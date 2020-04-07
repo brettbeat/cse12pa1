@@ -67,6 +67,17 @@ public class RockPaperScissors {
      */
     public RockPaperScissors() {
         // TODO
+	systemMoves = new String[5];
+	userMoves = new ArrayList<String>();
+	initialCapacity = 5;
+	size = 0;
+	playing = true;
+	totalGames = new Counter();
+	playerWin = new Counter();
+	cpuWin = new Counter();
+	tie = new Counter();
+
+
     }
 
     /**
@@ -76,7 +87,19 @@ public class RockPaperScissors {
      */
     static String genCPUMove() {
         //TODO
+	Random rps = new Random();
+	int rando = rps.nextInt(3);
+	if(rando == 0) {
+		return SCISSORS;
+	}
+	else if(rando == 1) {
+		return PAPER;
+	}
+	else {
+		return ROCK;
+	}
     }
+
 
     /**
      * Expands (doubles) the capacity of systemMoves
@@ -85,6 +108,11 @@ public class RockPaperScissors {
      */
     public void expandCapacity() {
         // TODO
+	String[] newSystemMoves = new String[systemMoves.length * 2];	
+	for(int i = 0; i < systemMoves.length; i++) {
+		newSystemMoves[i] = systemMoves[i];
+	}
+	systemMoves = newSystemMoves;	
     }
 
     /**
@@ -95,6 +123,12 @@ public class RockPaperScissors {
      */
     public void addSystemMove(String sysMove) {
         // TODO
+	if(size > systemMoves.length - 1) {
+		expandCapacity();
+	}
+	systemMoves[size] = sysMove;
+	size++;
+
     }
 
     /**
@@ -106,7 +140,85 @@ public class RockPaperScissors {
      * @return void
      */
     void play(String playerMove, String sysMove) {
-        // TODO : write code for the game
+        // TODO : write code for the game	
+		/*if(!playerMove.equals(ROCK) || !playerMove.equals(PAPER) ||
+			!playerMove.equals(SCISSORS) || !playerMove.equals(QUIT)) {
+			System.out.println(INVALID_INPUT);
+		}*/
+	   
+		if(playerMove.equals(ROCK) && sysMove.equals(ROCK)) {
+			userMoves.add(ROCK);
+			addSystemMove(ROCK);
+			totalGames.increment();
+			tie.increment();
+			System.out.println(ROCK_TIE);
+		}
+		else if(playerMove.equals(ROCK) && sysMove.equals(SCISSORS)) {
+			userMoves.add(ROCK);
+			addSystemMove(SCISSORS);
+			totalGames.increment();
+			playerWin.increment();
+			System.out.println(SCISSORS_USR_WIN);
+		}
+		else if(playerMove.equals(ROCK) && sysMove.equals(PAPER)) {
+			userMoves.add(ROCK);
+			addSystemMove(PAPER);
+			totalGames.increment();
+			cpuWin.increment();
+			System.out.println(PAPER_SYS_WIN);
+		}
+		else if(playerMove.equals(PAPER) && sysMove.equals(PAPER)) {
+			userMoves.add(PAPER);
+			addSystemMove(PAPER);
+			totalGames.increment();
+			tie.increment();
+			System.out.println(PAPER_TIE);
+		}
+		else if(playerMove.equals(PAPER) && sysMove.equals(SCISSORS)) {
+			userMoves.add(PAPER);
+			addSystemMove(SCISSORS);
+			totalGames.increment();
+			cpuWin.increment();
+			System.out.println(SCISSORS_SYS_WIN);
+		}
+		else if(playerMove.equals(PAPER) && sysMove.equals(ROCK)) {
+			userMoves.add(PAPER);
+			addSystemMove(ROCK);
+			totalGames.increment();
+			playerWin.increment();
+			System.out.println(ROCK_USR_WIN);
+		}
+		else if(playerMove.equals(SCISSORS) && sysMove.equals(SCISSORS)) {
+			userMoves.add(SCISSORS);
+			addSystemMove(SCISSORS);
+			totalGames.increment();
+			tie.increment();
+			System.out.println(SCISSORS_TIE);
+		}
+		else if(playerMove.equals(SCISSORS) && sysMove.equals(PAPER)) {
+			userMoves.add(SCISSORS);
+			addSystemMove(PAPER);
+			totalGames.increment();
+			playerWin.increment();
+			System.out.println(PAPER_USR_WIN);
+		}
+		else if(playerMove.equals(SCISSORS) && sysMove.equals(ROCK)) {
+			userMoves.add(SCISSORS);
+			addSystemMove(ROCK);
+			totalGames.increment();
+			cpuWin.increment();
+			System.out.println(ROCK_SYS_WIN);
+		}
+		else if(playerMove.equals(QUIT)) {
+			playing = false;
+			end();
+			
+		}
+		else {
+			System.out.println(INVALID_INPUT);
+		}
+
+			
     }
 
     /**

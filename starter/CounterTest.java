@@ -1,5 +1,10 @@
 /**
  * TODO:  Add your name, ID, and email as specified in the instructions
+ * Brett Beattie
+ * ID: A15485112
+ * bbeattie@ucsd.edu
+ * This file tests the Counter class. It tests that the counter can be
+ * incremented, decremented, and reset.
  */
 
 import org.junit.*;
@@ -47,7 +52,11 @@ public class CounterTest {
     public void testReset() {
         System.out.println("Checking Reset");
         // TODO: Complete the Test Case to check if the reset 
-        // functionality works as expected.
+        // functionality works as expected
+	counter.increment();
+	counter.reset();
+	assertEquals(0, counter.getCount());
+
     }
 
     @Test
@@ -65,5 +74,7 @@ public class CounterTest {
 
         // TODO: Complete the Test Case to check if the decrement 
         // functionality works as expected.
+	assertEquals(0, counter.getCount());
+	assertEquals(0, counter2.getCount());
     }
 }

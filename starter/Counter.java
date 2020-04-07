@@ -1,5 +1,11 @@
 /**
  * TODO:  Add your name, ID, and email as specified in the instructions
+ * Brett Beattie
+ * ID: A15485112
+ * bbeattie@ucsd.edu
+ * This file contains a class whos methods allow a count to be kept which can
+ * be incremeneted and decremented. It can also be reset.
+ * 
  */
  
 public class Counter {
@@ -39,6 +45,6 @@ public class Counter {
     }
 
     public void reset() {
-        count = 0;
+        count = 1;
     }
 }

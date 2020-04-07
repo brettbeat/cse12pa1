@@ -17,9 +17,10 @@ public class RockPaperScissorsTest {
     public void playSanity_v() throws IOException {
         RockPaperScissors testGame = new RockPaperScissors();
 
-        testGame.play("p", "r");
+        testGame.play("p", "p");
         testGame.play("r", "s");
         testGame.play("s", "p");
+	testGame.play("q", null);
 
         String[] ans = {"p", "r", "s"};
         assertArrayEquals(testGame.userMoves.toArray(), ans);
